@@ -30,7 +30,7 @@ export default function AuthLayout({
             <div>
               <h1>
                 Sign Up to Claim Up to 
-                <span clas>1,000 USDT</span>
+                <span className="text-tertiary-500">1,000 USDT</span>
                 BONUS
               </h1>
             </div>
