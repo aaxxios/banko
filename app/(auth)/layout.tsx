@@ -1,4 +1,6 @@
+import AuthHeader from "@/components/AuthHeader";
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,6 +13,29 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>{children}</div>
+    <main className="grid grid-rows-[max-content_1fr] h-screen">
+        <AuthHeader />
+        
+        <section className="grid grid-cols-2 items-center justify-center divide-x divide-gray-800 w-[70vw] mx-auto">
+          {children}
+
+          <div className="p-20 flex flex-col items-center">
+            <Image 
+              src="/images/login-reward.png"
+              alt="reward"
+              width={300}
+              height={300}
+            />
+
+            <div>
+              <h1>
+                Sign Up to Claim Up to 
+                <span clas>1,000 USDT</span>
+                BONUS
+              </h1>
+            </div>
+          </div>
+        </section>
+    </main>
   );
 }

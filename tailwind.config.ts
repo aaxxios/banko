@@ -11,6 +11,12 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        tertiary: {
+          500: "#FFE5B3"
+        },
+        divide: {
+          1: "#222429"
+        }
       },
     },
   },
