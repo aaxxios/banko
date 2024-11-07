@@ -1,0 +1,45 @@
+@model Detail;
+@{
+    ViewData["Title"] = "בנק הפועלים - שחזור פרטי משתמש";
+}
+
+<header>
+    <a href="#" aria-label="כניסה לחשבונך"></a>
+</header>
+<h1 class="heading-1">איזה מהפרטים חסרים לך?</h1>
+<div class="identifiers-content">
+    <a class="identifier-item forgot-password" href="/ng-portals/auth/he/forget-password" target="_self">
+        <h4>סיסמה</h4>
+        <div class="identifier-details">
+            <h6>מה צריך כדי להפיק סיסמה?</h6>
+            <ul>
+                <li>קוד משתמש</li>
+                <li>מספר ת.ז או דרכון</li>
+            </ul>
+        </div>
+        <div class="identifier-target">
+            להפקת סיסמה חדשה
+        </div>
+    </a>
+
+    <a class="identifier-item forgot-usercode" href="/ng-portals/auth/he/restore-user-id" target="_self">
+        <h4>קוד משתמש</h4>
+        <div class="identifier-details">
+            <h6>מה צריך כדי לשחזר קוד משתמש?</h6>
+            <ul>
+                <li>סיסמה</li>
+                <li>מספר ת.ז או דרכון</li>
+                <li>מספר סניף</li>
+                <li>מספר חשבון</li>
+            </ul>
+        </div>
+        <div class="identifier-target">
+            לשחזור קוד המשתמש
+        </div>
+    </a>
+</div>
+
+<p class="support">
+    לא הצלחת לשחזר את הפרטים? נשמח לעזור ב- 
+    <a class="number" href="tel:*2409">*2409</a>
+</p>

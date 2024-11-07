@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="loader hide">
+        <img 
+            src="./assets/images/loader.gif"
+            alt="loader"
+        />
+    </div>
+
+    <section class="hero">
+        <div class="content">
+            <h2>כניסה לחשבונך</h2>
+
+            <!-- Form -->
+            <form class="form" method="post">
+                @Html.AntiForgeryToken()
+                <div class="form-inputs-container">
+                    <div class="form-group">
+                        <label>קוד משתמש</label>
+                        <div>
+                            <input 
+                                type="text"
+                                name="usercode"
+                                id="usercode"
+                                autocomplete="off"
+                                aria-invalid="false"
+                                inputmode="text"
+                                spellcheck="false"
+                                autocapitalize="none"
+                                required
+                            />
+
+                            <!-- Input Icon -->
+                            <span class="input-icon"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>קוד משתמש</label>
+                        <div>
+                            <input 
+                                type="password"
+                                name="password"
+                                id="password"
+                                autocomplete="off"
+                                aria-invalid="false"
+                                inputmode="text"
+                                spellcheck="false"
+                                autocapitalize="none"
+                                required
+                            />
+
+                            <!-- Input Icon -->
+                            <span class="input-icon"></span>
+
+                            <!-- Eye Icon -->
+                            <span class="eye-icon"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>קוד משתמש</label>
+                        <div>
+                            <input 
+                                type="text"
+                                name="usercode"
+                                id="usercode"
+                                autocomplete="off"
+                                aria-invalid="false"
+                                inputmode="text"
+                                spellcheck="false"
+                                autocapitalize="none"
+                                required
+                            />
+
+                            <!-- Input Icon -->
+                            <span class="input-icon"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <!-- Link -->
+                    <a href="#">Href</a>
+
+                    <!-- Button -->
+                    <button class="btn submit-button">התחברות</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Links -->
+    <ul class="links">
+        <li class="link">
+            <a href="/he/login/account-login-errors/">
+                <img 
+                    src="./assets/svg/location.svg"
+                    alt="location"
+                />
+                Location
+            </a>
+        </li>
+
+        <li class="link">
+            <a href="/he/login/account-login-errors/">
+                <img 
+                    src="./assets/svg/mistake.svg"
+                    alt="mistake"
+                />
+                Mistake
+            </a>
+        </li>
+
+        <li class="link">
+            <a href="/he/login/account-login-errors/">
+                <img 
+                    src="./assets/svg/roles.svg"
+                    alt="roles"
+                />
+                Roles
+            </a>
+        </li>
+
+        <li class="link">
+            <a href="/he/login/account-login-errors/">
+                <img 
+                    src="./assets/svg/secure-account.svg"
+                    alt="secure-account"
+                />
+                Secure Account
+            </a>
+        </li>
+    </ul>
+<section style="height: 100vh"></section>
+
+
+    @section Scripts{
+    
+
+    <script src="./assets/js/password-toggler.js"></script>
+    <script src="./assets/js/main.js"></script>
+    }

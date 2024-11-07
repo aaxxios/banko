@@ -1,0 +1,71 @@
+
+@font-face{
+    font-family: Poalim-Arial;
+    src: url("./assets/fonts/poalimsans-medium-webfont_new.67327ee7a94acf21.woff2") format("woff2");
+    font-weight:400;
+    font-style: normal;
+    font-display: swap
+}
+
+@font-face{
+    font-family: Poalim-2;
+    src: url(poalim-mobile-regular.556770fab42322eb.ttf);
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap
+}
+
+@font-face{
+    font-family: Poalim-2-light;
+    src: url(poalim-mobile-light.ec4ed52c53df7bf0.ttf);font-weight:300
+}
+
+@font-face{
+    font-family: Poalim-2;
+    src: url(poalim-mobile-bold.da03c92f0faa0aa3.ttf);
+    font-weight:700
+}
+
+@font-face{
+    font-family: Poalim-ar;
+    src: url("./assets/fonts/poalim-regular.46327a7442c79f9e.woff2") format("woff2"),
+    url(poalim-regular.807e1913d84cc6a3.woff) format("woff"),
+    url(poalim-regular.1f54d6a1efef1a7b.eot) format("eot");
+    font-weight:400;
+    font-style:normal;
+    font-display:swap
+}
+
+@font-face{
+    font-family: Poalim-ar-light;
+    src: url("./assets/fonts/poalim-light.94c40d09d3a944c7.woff2") format("woff2"),
+    url(poalim-light.70fcd966097351fd.woff) format("woff"),
+    url(poalim-light.54b6cfef3f3bb5bf.eot) format("eot")
+}
+
+@font-face{
+    font-family: Poalim-ar;
+    src: url("./assets/fonts/poalim-bold.afaa78f0219b396c.woff2") format("woff2"),
+    url(poalim-bold.3fc06076183e1d0b.woff) format("woff"),
+    url(poalim-bold.86eccd8267ca480a.eot) format("eot");
+    font-weight:700
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root{
+        scroll-behavior:smooth
+    }
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}

