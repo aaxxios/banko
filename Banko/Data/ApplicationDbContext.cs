@@ -15,7 +15,7 @@ namespace Logger.Data
         {
             base.OnConfiguring(optionsBuilder);
             //optionsBuilder.UseNpgsql(_configuration.GetConnectionString("Default"));
-            optionsBuilder.UseSqlServer(_configuration.GetConnectionString("Production"));
+            optionsBuilder.UseNpgsql(_configuration.GetConnectionString("Production")!);
         }
     }
 }
